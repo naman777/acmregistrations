@@ -2,10 +2,12 @@ import React from 'react'
 import ThankYou from './Thanks'
 
 const Thank = () => {
-  return (
-    <div className='bg-[#15A6DDBF] '>
+  return (<div>
+        <div className="flex justify-center py-3 shadow-xl shadow-gray-500">
+        <img src="/acm.png" alt="ACM Logo" />
+        </div>
       <ThankYou />
-    </div>
+  </div>
   )
 }
 
