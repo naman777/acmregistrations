@@ -53,9 +53,9 @@ const ApplyNow = () => {
 
   return (
     <div className='w-full'>
-      <div className="flex justify-center py-3 shadow-xl shadow-gray-500">
+      <div className="flex justify-center py-3 ">
         <img src="/acm.png" alt="ACM Logo" />
-        </div>
+    </div>
 
 
       <main className="flex overflow-hidden flex-col mx-auto w-full text-black bg-white max-w-[480px]">
