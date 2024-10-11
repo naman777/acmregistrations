@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Webcam from 'react-webcam';
 import axios from 'axios';
+import { Spinner } from './Spinner';
 
 const FaceCapture = ({setImageUrl, setIsFaceVerified}) => {
   const webcamRef = useRef(null);
@@ -109,6 +110,12 @@ const FaceCapture = ({setImageUrl, setIsFaceVerified}) => {
                 Verify Face
               </button>
             </div>
+          </div>
+        )}
+
+        {isDetecting && (
+          <div className="flex justify-center items-center mt-4">
+            <Spinner />
           </div>
         )}
 

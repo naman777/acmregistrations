@@ -1,12 +1,13 @@
 import React from 'react';
 
-const InputField = ({ label, type, placeholder, value, onChange, name }) => {
+const InputField = ({ label, type, placeholder, value, onChange, name, required }) => {
   const id = label.toLowerCase().replace(/\s/g, '-');
 
   return (
     <div className="flex flex-col mt-6">
       <label htmlFor={id} className="self-start text-base font-semibold">
         {label}
+        {required && <span style={{ color: 'red' }}> *</span>}
       </label>
       <input
         type={type}
@@ -16,6 +17,7 @@ const InputField = ({ label, type, placeholder, value, onChange, name }) => {
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        required={required}
       />
     </div>
   );
