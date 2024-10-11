@@ -89,8 +89,23 @@ const ApplyNow = () => {
     });
   };
 
+  const validateForm = () => {
+    for (const field of inputFields) {
+      if (field.required && !formData[field.name]) {
+        return false;
+      }
+    }
+    return true;
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     try {
 
       const formDataToSend = {
@@ -120,36 +135,42 @@ const ApplyNow = () => {
       type: "text",
       name: "name",
       placeholder: "Enter your name",
+      required: true,
     },
     {
       label: "Email",
       type: "email",
       name: "email",
       placeholder: "Enter your email",
+      required: true,
     },
     {
       label: "Branch",
       type: "text",
       name: "branch",
       placeholder: "Enter your branch",
+      required: true,
     },
     {
       label: "Roll No. (Application No.)",
       type: "text",
       name: "rollNo",
       placeholder: "Enter your roll number",
+      required: true,
     },
     {
       label: "Phone Number",
       type: "tel",
       name: "phoneNumber",
       placeholder: "Enter your phone number",
+      required: true,
     },
     {
       label: "Why do you want to join ACM ?",
       type: "text",
       name: "ans1",
       placeholder: "Long-answer text",
+      required: true,
     },
     {
       label:
@@ -157,12 +178,14 @@ const ApplyNow = () => {
       type: "text",
       name: "ans2",
       placeholder: "Long-answer text",
+      required: true,
     },
     {
       label: "Are you involved in any other socities ?",
       type: "text",
       name: "ans3",
       placeholder: "Long-answer text",
+      required: true,
     },
     {
       label:
@@ -170,6 +193,7 @@ const ApplyNow = () => {
       type: "text",
       name: "ans4",
       placeholder: "Long-answer text",
+      required: true,
     },
   ];
 
@@ -228,6 +252,7 @@ const ApplyNow = () => {
                   value={formData[field.name]}
                   onChange={handleChange}
                   name={field.name} // Add this line to pass the name prop
+                  required={field.required}
                 />
               ))}
 
@@ -296,7 +321,6 @@ const ApplyNow = () => {
                 
               </div>
               {isFaceVerified ? <SubmitButton /> : <p>Please verify your face to proceed.</p>}
-
             </form>
           </div>
         </section>
