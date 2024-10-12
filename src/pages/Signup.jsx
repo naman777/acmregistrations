@@ -343,17 +343,8 @@ const ApplyNow = () => {
 
               <Turnstile
         sitekey="0x4AAAAAAAxS-NJz3hWUYrGN"
-        onVerify={(token) => {
-          fetch("/login", {
-            method: "POST",
-            body: JSON.stringify({ token }),
-          }).then((response) => {
-            if (response.ok) {
-              setIsVerified(true); 
-            } else {
-              turnstile.reset(); 
-            }
-          });
+        onVerify={() => {
+          setIsVerified(true);
         }}
         />
         </div>
