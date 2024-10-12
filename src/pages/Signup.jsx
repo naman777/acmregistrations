@@ -6,11 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { Spinner } from "./Spinner";
 import acm from "../assets/acm.png";
 import Smart from "../assets/smart-people.png";
+import Turnstile, { useTurnstile } from "react-turnstile";
 
 const ApplyNow = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const [isVerified, setIsVerified] = useState(false);
+  const turnstile = useTurnstile();
 
   const departments = [
     " Marketing",
@@ -334,7 +337,28 @@ const ApplyNow = () => {
                   />
                 ))}
               </div>
-              <SubmitButton />
+                <div style={{
+                  marginTop:"2rem"
+                }}>
+
+              <Turnstile
+        sitekey="0x4AAAAAAAxS-NJz3hWUYrGN"
+        onVerify={(token) => {
+          fetch("/login", {
+            method: "POST",
+            body: JSON.stringify({ token }),
+          }).then((response) => {
+            if (response.ok) {
+              setIsVerified(true); 
+            } else {
+              turnstile.reset(); 
+            }
+          });
+        }}
+        />
+        </div>
+      <SubmitButton disabled={!isVerified}/>
+              
             </form>
           </div>
         </section>

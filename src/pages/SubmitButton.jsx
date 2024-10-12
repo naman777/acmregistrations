@@ -1,11 +1,13 @@
 import React from "react";
 
-const SubmitButton = ({ onClick }) => {
+const SubmitButton = ({ onClick,disabled }) => {
+  
   return (
     <button
       type="submit"
       className="flex gap-2 self-center px-9 py-4 mt-8 max-w-full text-xl font-semibold text-white whitespace-nowrap bg-sky-500 rounded-2xl shadow-[0px_8px_23px_rgba(173,220,255,1)] w-[180px]"
       onClick={onClick} // Change onclick to onClick
+      disabled={disabled}
     >
       <span className="grow">Submit</span>
       <img
