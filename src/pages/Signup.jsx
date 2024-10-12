@@ -4,12 +4,12 @@ import SubmitButton from "./SubmitButton";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "./Spinner";
-import FaceCapture from "./FaceCapture";
+import acm from "../assets/acm.png";
+import Smart from "../assets/smart-people.png";
 
 const ApplyNow = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [isFaceVerified, setIsFaceVerified] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
 
   const departments = [
@@ -50,9 +50,6 @@ const ApplyNow = () => {
     ans7: "",
     image: "",
   });
-
-  
-  
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -97,7 +94,7 @@ const ApplyNow = () => {
     }
     return true;
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -107,7 +104,6 @@ const ApplyNow = () => {
     }
 
     try {
-
       const formDataToSend = {
         ...formData,
         image_url: imageUrl, // Add imageUrl here
@@ -119,7 +115,7 @@ const ApplyNow = () => {
       );
       setIsLoading(false);
       if (res.status === 200) {
-        // navigate("/thankyou");
+        navigate("/thankyou");
       } else {
         alert("Error in submitting the form");
       }
@@ -224,24 +220,42 @@ const ApplyNow = () => {
 
   return (
     <div className="w-full">
-      <div className="flex justify-center py-3 ">
+      <div
+        className="flex justify-center py-3 fixed items-center w-full"
+        style={{
+          backgroundColor: "#fff",
+
+          color: "#fff",
+          zIndex: "1000",
+          boxShadow: "0px 2px 4px 0px rgba(0,0,0,0.1)",
+        }}
+      >
         <img src="/acm.png" alt="ACM Logo" />
       </div>
 
-      <main className="flex overflow-hidden flex-col mx-auto w-full text-black bg-white max-w-[480px]">
-        <section className="flex flex-col px-5 mt-0 w-full">
+      <main
+        className="flex overflow-hidden px-0  flex-row justify-between mx-auto w-full text-black bg-white md:px-20"
+        
+      >
+        <img
+          src={acm}
+          className="hidden md:block"
+          style={{
+            height: "100vh",
+            position: "fixed",
+            left: "0",
+          }}
+          alt=""
+        />
+        <section className="flex flex-col px-5 mt-20 w- bg-blue-300full">
           <div className="mb-20">
             <div className="flex items-start self-center text-4xl font-bold ">
               <h1 className="grow self-end mt-10 mr-0">Apply Now</h1>
             </div>
-            <div className="flex gap-4 self-start mt-4 text-xl font-bold tracking-wide text-sky-500">
+            <div className="flex gap-4 self-start mt-4 text-xl font-bold tracking-wide">
               <div className="shrink-0 self-start mt-4 w-14 border-2 border-black border-solid h-[5px] bg-black" />
               <div className="basis-auto">Register with</div>
             </div>
-            <FaceCapture
-                  setImageUrl={setImageUrl}
-                  setIsFaceVerified={setIsFaceVerified}
-                />
             <form onSubmit={handleSubmit}>
               {inputFields.map((field, index) => (
                 <InputField
@@ -253,6 +267,7 @@ const ApplyNow = () => {
                   onChange={handleChange}
                   name={field.name} // Add this line to pass the name prop
                   required={field.required}
+                  style={field.style}
                 />
               ))}
 
@@ -318,12 +333,27 @@ const ApplyNow = () => {
                     name={field.name} // Add this line to pass the name prop
                   />
                 ))}
-                
               </div>
-              {isFaceVerified ? <SubmitButton /> : <p>Please verify your face to proceed.</p>}
+              <SubmitButton />
             </form>
           </div>
         </section>
+        <div
+          className="flex items-start justify-center mt-20 relative hidden md:block"
+          style={{
+            width: "40%",
+          }}
+        >
+          <img
+            style={{
+              marginTop: "5rem",
+              width: "500px",
+              position: "fixed",
+            }}
+            src={Smart}
+            alt=""
+          />
+        </div>
       </main>
       {isLoading && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
