@@ -5,6 +5,7 @@ import CardField from "./CardField";
 const AdminPortal = ({ users, usersCount }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [inputValue, setInputValue] = useState("");
+  const name = localStorage.getItem("name");
 
   // Function to handle next and previous button clicks
   const handleNext = () => {
@@ -51,9 +52,21 @@ const AdminPortal = ({ users, usersCount }) => {
       </div>
 
       <div className="p-10">
+        <div className="ml-8">
+          <span className="text-3xl font-extrabold text-black">Hello</span>
+          <span className="text-4xl font-bold text-[#15A6DD]">
+            {" "}
+            {name}
+            {"!"}
+          </span>
+        </div>
         <div className="bg-white rounded-lg p-8">
           <div className="text-2xl font-bold">
-            Users Registered: {usersCount}
+            USERS REGISTERED: {" "}
+            <span className="text-[#15A6DD]">
+            {usersCount}
+
+            </span>
           </div>
 
           {/* Form Number and Navigation */}
@@ -64,7 +77,7 @@ const AdminPortal = ({ users, usersCount }) => {
                 className={`px-4 py-2 rounded-full ${
                   currentIndex === 0
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-blue-500 hover:bg-blue-700 text-white"
+                    : "bg-[#15A6DD] hover:bg-blue-700 text-white"
                 }`}
                 disabled={currentIndex === 0}
               >
@@ -75,7 +88,7 @@ const AdminPortal = ({ users, usersCount }) => {
                 className={`px-4 py-2 ml-2 rounded-full ${
                   currentIndex === users.length - 1
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-blue-500 hover:bg-blue-700 text-white"
+                    : "bg-[#15A6DD] hover:bg-blue-700 text-white"
                 }`}
                 disabled={currentIndex === users.length - 1}
               >
@@ -84,7 +97,7 @@ const AdminPortal = ({ users, usersCount }) => {
             </div>
 
             {/* Current Page Display */}
-            <div className="text-lg font-semibold">
+            <div className="text-lg font-bold">
               Form {currentIndex + 1} of {users.length}
             </div>
 
@@ -99,7 +112,7 @@ const AdminPortal = ({ users, usersCount }) => {
               />
               <button
                 onClick={handleJump}
-                className="ml-2 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md"
+                className="ml-2 px-4 py-2 bg-[#15A6DD] hover:bg-blue-700 text-white rounded-md"
               >
                 Jump
               </button>

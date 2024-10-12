@@ -17,6 +17,7 @@ const AdminLogin = () => {
 
     if (res.data.success) {
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("name", name);
       navigate("/admin/data");
     } else {
       alert("Invalid Credentials");
@@ -90,7 +91,7 @@ const AdminLogin = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-8"
+              className="w-full bg-[#15A6DD] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-8"
             >
               Login
             </button>
