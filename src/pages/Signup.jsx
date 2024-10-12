@@ -236,10 +236,7 @@ const ApplyNow = () => {
         <img src="/acm.png" alt="ACM Logo" />
       </div>
 
-      <main
-        className="flex overflow-hidden px-0  flex-row justify-between mx-auto w-full text-black bg-white md:px-20"
-        
-      >
+      <main className="flex overflow-hidden px-0  flex-row justify-between mx-auto w-full text-black bg-white md:px-20">
         <img
           src={acm}
           className="hidden md:block"
@@ -337,19 +334,19 @@ const ApplyNow = () => {
                   />
                 ))}
               </div>
-                <div style={{
-                  marginTop:"2rem"
-                }}>
-
-              <Turnstile
-        sitekey="0x4AAAAAAAxS-NJz3hWUYrGN"
-        onVerify={() => {
-          setIsVerified(true);
-        }}
-        />
-        </div>
-      <SubmitButton disabled={!isVerified}/>
-              
+              <div
+                style={{
+                  marginTop: "2rem",
+                }}
+              >
+                <Turnstile
+                  sitekey="0x4AAAAAAAxS-NJz3hWUYrGN"
+                  onVerify={() => {
+                    setIsVerified(true);
+                  }}
+                />
+              </div>
+              <SubmitButton disabled={!isVerified} />
             </form>
           </div>
         </section>
